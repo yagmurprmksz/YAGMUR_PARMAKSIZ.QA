@@ -12,22 +12,15 @@ class QAJobsPage(BasePage):
     OPTIONS = (By.XPATH, "//li[contains(@class, 'select2-results__option')]")
     JOB_CARDS = (By.XPATH, "//div[contains(@class, 'position')]")
 
-    def accept_cookies(self):
-        from selenium.webdriver.common.by import By
-        try:
-            self.click((By.ID, "wt-cli-accept-all-btn"))
-        except:
-            pass
-
     def click_see_all_qa_jobs(self):
         try:
             self.click(self.SEE_ALL_QA)
         except:
-            alt_btns = self.find_all((By.XPATH, "//*[contains(text(), 'See all') or contains(text(), 'View all') or contains(text(), 'All jobs')]") )
+            alt_btns = self.find_all((By.XPATH, "//*[contains(text(), 'See all QA jobs')]") )
             if alt_btns:
                 self.execute_script("arguments[0].click();", alt_btns[0])
             else:
-                raise Exception("✗ 'See all jobs' buttons cant found")
+                raise Exception("✗ 'See all QA jobs' buttons cant found")
 
     def filter_location(self):
         self.click(self.LOCATION_CONTAINER)
