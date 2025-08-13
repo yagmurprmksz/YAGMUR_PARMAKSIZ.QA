@@ -25,4 +25,8 @@ class BasePage:
         return self.driver.execute_script(script, *args) #executes JS commands
 
     def accept_cookies(self):
-        return self.click((By.ID, "wt-cli-accept-all-btn")) #click accept button because there are too many cookies
+        from selenium.webdriver.common.by import By
+        try:
+            self.click((By.ID, "wt-cli-accept-all-btn"))
+        except:
+            pass
